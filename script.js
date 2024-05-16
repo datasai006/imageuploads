@@ -35,3 +35,44 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
+function closePopup() {
+  document.getElementById("upload-popup").style.display = "none";
+}
+
+function displayFileInfo(inputId, infoContainerId) {
+  const input = document.getElementById(inputId);
+  const file = input.files[0];
+  const fileInfoContainer = document.getElementById(infoContainerId);
+
+  if (file) {
+    if (file.type.startsWith("image")) {
+      const reader = new FileReader();
+      reader.onload = function (event) {
+        fileInfoContainer.innerHTML = `<img src="${event.target.result}" alt="Image Preview" style="max-width: 100%; max-height: 100%;">`;
+      };
+      reader.readAsDataURL(file);
+    } else {
+      fileInfoContainer.innerHTML = `<p>File Name: ${file.name}</p>`;
+    }
+  } else {
+    fileInfoContainer.innerHTML = "";
+  }
+}
+//  file upload code
+// function closePopup() {
+//   document.getElementById("upload-popup").style.display = "none";
+// }
+
+// function displayFileInfo(inputId, infoContainerId) {
+//   const input = document.getElementById(inputId);
+//   const file = input.files[0];
+//   const fileInfoContainer = document.getElementById(infoContainerId);
+
+//   if (file) {
+
+//     fileInfoContainer.innerHTML = `<p>File Name: ${file.name}</p>`;
+//   } else {
+
+//     fileInfoContainer.innerHTML = "";
+//   }
+// }
