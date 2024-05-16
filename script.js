@@ -48,7 +48,7 @@ function displayFileInfo(inputId, infoContainerId) {
     if (file.type.startsWith("image")) {
       const reader = new FileReader();
       reader.onload = function (event) {
-        fileInfoContainer.innerHTML = `<img src="${event.target.result}" alt="Image Preview" style="max-width: 100%; max-height: 100%;">`;
+        fileInfoContainer.innerHTML = `<img src="${event.target.result}" alt="Image Preview" style="max-width: 60%; max-height: 50%; fit">`;
       };
       reader.readAsDataURL(file);
     } else {
