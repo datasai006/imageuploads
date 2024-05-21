@@ -76,3 +76,62 @@ function displayFileInfo(inputId, infoContainerId) {
 //     fileInfoContainer.innerHTML = "";
 //   }
 // }
+document.addEventListener("DOMContentLoaded", () => {
+  const container = document.getElementById("container");
+
+  container.addEventListener("change", (event) => {
+    if (event.target.classList.contains("dropdown")) {
+      handleDropdownChange(event.target);
+    }
+  });
+
+  container.addEventListener("click", (event) => {
+    if (event.target.classList.contains("add")) {
+      event.preventDefault();
+      addNewEntry();
+    }
+  });
+
+  function handleDropdownChange(dropdown) {
+    const parentEntry = dropdown.closest(".entry");
+    const existingCustomInput = parentEntry.querySelector(".custom-input");
+
+    if (dropdown.value === "other" && !existingCustomInput) {
+      const customInput = document.createElement("input");
+      customInput.type = "text";
+      customInput.placeholder = "Enter custom item";
+      customInput.classList.add("custom-input");
+      parentEntry.insertBefore(customInput, dropdown.nextSibling);
+    } else if (dropdown.value !== "other" && existingCustomInput) {
+      parentEntry.removeChild(existingCustomInput);
+    }
+  }
+
+  function addNewEntry() {
+    const newEntry = document.createElement("div");
+    newEntry.classList.add("entry");
+
+    const newSelect = document.createElement("select");
+    newSelect.classList.add("dropdown");
+    newSelect.innerHTML = `
+            <option value="">Select an item</option>
+            <option value="item1">Item 1</option>
+            <option value="item2">Item 2</option>
+            <option value="item3">Item 3</option>
+            <option value="other">Other</option>
+        `;
+    newEntry.appendChild(newSelect);
+
+    const newFileInput = document.createElement("input");
+    newFileInput.type = "file";
+    newFileInput.accept = "image/*";
+    newEntry.appendChild(newFileInput);
+
+    const newButton = document.createElement("button");
+    newButton.classList.add("add");
+    newButton.textContent = "+";
+    newEntry.appendChild(newButton);
+
+    container.appendChild(newEntry);
+  }
+});

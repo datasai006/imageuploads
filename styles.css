@@ -32,7 +32,7 @@
   text-decoration: none;
   cursor: pointer;
 }
-.file-upload-input {
+/* .file-upload-input {
   position: absolute;
   margin: 0;
   padding: 0;
@@ -124,4 +124,30 @@ h1 {
 .btn:hover {
   background: rebeccapurple;
   box-shadow: 0 3px 0 0 deeppink;
+} */
+#container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+select,
+input[type="file"] {
+  padding: 5px;
+}
+
+button.add {
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+select,
+input[type="file"],
+input[type="text"] {
+  padding: 5px;
 }
